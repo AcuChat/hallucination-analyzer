@@ -12,4 +12,15 @@
         top: .5rem;
         left: .5rem;
     }
+    &__highlight-container {
+        position: absolute;
+        top: .5rem;
+        right: .5rem;
+    }
+    &__checkbox-container {
+        display: flex;
+    }
+    &__checkbox {
+        margin-right: .25rem;
+    }
 }
