@@ -1,0 +1,14 @@
+.Header {
+    margin: .5rem 0 1rem 0;
+    display: flex;
+    align-items: center;
+    &__icon {
+        height: 2rem;
+        margin: 0 .5rem 0 .5rem; 
+    }
+    &__title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: black;
+    }
+}
