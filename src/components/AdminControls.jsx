@@ -2,6 +2,9 @@ import './AdminControls.scss';
 import React from 'react'
 
 function AdminControls() {
+
+  if (window.location.hostname !== 'localhost') return <></>
+
   return (
     <div className='AdminControls'>
       <div className="AdminControls__submit-button">Submit</div>
