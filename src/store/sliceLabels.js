@@ -4,9 +4,26 @@ const labels = [
     {
         id: '1d0a0609af5a211f019d85c6e13441ff',
         name: 'Evident Conflict',
-        available: true,
         selected: true,
-        color: "rgba (183, 28, 28, 1)"
+        color: "#ba1004"
+    },
+    {
+        id: '1de8236cc30422921bc6a6856aebf230',
+        name: 'Subtle Conflict',
+        selected: true,
+        color: "#ac31bd"
+    },
+    {
+        id: '6bf3885d84c306f2d44371ad636c7d72',
+        name: 'Evident Baseless Info',
+        selected: false,
+        color: "#FB8C00"
+    },
+    {
+        id: 'fb882e538e93da73e87137cef73ca4fe',
+        name: 'Subtle Baseless Info',
+        selected: false,
+        color: "#f5f256"
     }
 ]
 

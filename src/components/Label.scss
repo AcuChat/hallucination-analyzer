@@ -1,0 +1,9 @@
+.Label {
+    display: flex;
+    align-items: center;
+    margin: 0 .5rem;
+
+    &__name {
+        margin: 0 .15rem 0 .25rem;
+    }
+}
