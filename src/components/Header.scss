@@ -1,5 +1,5 @@
 .Header {
-    margin: .5rem 0 1rem 0;
+    padding: .5rem; 
     display: flex;
     align-items: center;
     &__icon {
@@ -11,4 +11,5 @@
         font-weight: bold;
         color: black;
     }
+    background-color: rgba(0, 105, 255, .3);
 }
