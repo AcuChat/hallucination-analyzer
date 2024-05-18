@@ -10,7 +10,8 @@ import GroundTruthViewer from '../components/GroundTruthViewer';
 function Acurai() {
   return (
     <div className='Acurai'>
-      <h1 className="Acurai__title">Acurai</h1>
+      <h1 className="Acurai__title">RAGTruth Corpus</h1>
+      <div className="Acurai__corpus-info">From <a href='https://arxiv.org/html/2401.00396v1' target="_blank">RAGTruth Study</a></div>
       <AdminControls />
       <ModelSelector />
       <LabelsSelector />
