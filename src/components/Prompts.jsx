@@ -1,12 +1,15 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Prompts.scss';
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import { responsesSetResponses } from '../store/sliceResponses';
 
 function Prompts() {
   const responses = useSelector(state => state.responses);
   const models = useSelector(state => state.models);
   const labels = useSelector(state => state.labels);
+
+  const dispatch = useDispatch();
   
   const getResponses = async () => {
     const request = {
@@ -20,7 +23,7 @@ function Prompts() {
     }
 
     const response = await axios(request);
-    console.log(response.data);
+    dispatch(responsesSetResponses(response.data));
   }
 
   useEffect(() => {
