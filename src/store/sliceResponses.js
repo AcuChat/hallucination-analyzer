@@ -8,8 +8,8 @@ const initState = {
 }
 
 const sliceTemplate = createSlice({
-    name: 'counter',
-    initialState: 0,
+    name: 'responses',
+    initialState: initState,
     reducers: {
         responsesReset: (state, action) => initState,
         responsesNext: (state, action) => {
