@@ -5,13 +5,14 @@ const labels = [
         id: '1d0a0609af5a211f019d85c6e13441ff',
         name: 'Evident Conflict',
         selected: true,
-        color: "#ba1004"
+        // color: "#ba1004",
+        color: "rgba(255, 0, 0, 0.8)"
     },
     {
         id: '1de8236cc30422921bc6a6856aebf230',
         name: 'Subtle Conflict',
         selected: true,
-        color: "#ac31bd"
+        color: "rgb(172, 49, 189, .6)"
     },
     {
         id: '6bf3885d84c306f2d44371ad636c7d72',

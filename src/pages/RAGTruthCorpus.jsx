@@ -43,7 +43,7 @@ function RAGTruthCorpus() {
   return (
     <div className='RAGTruthCorpus'>
       <h1 className="RAGTruthCorpus__title">RAGTruth Corpus</h1>
-      <div className="RAGTruthCorpus__corpus-info">From <a href='https://arxiv.org/html/2401.00396v1' target="_blank">RAGTruth Study</a></div>
+      <div className="RAGTruthCorpus__corpus-info">Source: <a href='https://arxiv.org/html/2401.00396v1' target="_blank">RAGTruth Study</a></div>
       <AdminControls />
       <ModelSelector />
       <LabelsSelector />
