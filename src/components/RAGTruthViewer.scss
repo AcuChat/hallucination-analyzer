@@ -13,12 +13,18 @@
         text-align: left;
     }
     &__button {
-        color: white;
-        background-color: black;
+        color: black;
+        background-color: white;
+        border: 1px solid black;
         padding: .25rem .5rem;
         width: fit-content;
         margin: .5rem auto;
         cursor: pointer;
         border-radius: 4px;
+
+        &:hover {
+            color: white;
+            background-color: black;
+        }
     }
 }
