@@ -7,8 +7,11 @@ import RAGTruthViewer from '../components/RAGTruthViewer';
 import RAGFixViewer from '../components/RAGFixViewer';
 import GroundTruthViewer from '../components/GroundTruthViewer';
 import Prompts from '../components/Prompts';
+import { useSelector } from 'react-redux';
 
 function RAGTruthCorpus() {
+  const responses = useSelector(state => state.responses);
+
   return (
     <div className='RAGTruthCorpus'>
       <h1 className="RAGTruthCorpus__title">RAGTruth Corpus</h1>
@@ -16,7 +19,7 @@ function RAGTruthCorpus() {
       <AdminControls />
       <ModelSelector />
       <LabelsSelector />
-      <h2 className="RAGTruthCorpus__subtitle">Response ID: </h2>
+      <h2 className="RAGTruthCorpus__subtitle">Response ID: {responses.currentResponseIndex > -1 ? responses[responses.currentResponseIndex]?.id : ''} </h2>
       <Prompts />
       <div className="RAGTruthCorpus__responses-container">
         <RAGTruthViewer />
