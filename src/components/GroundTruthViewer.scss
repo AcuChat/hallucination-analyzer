@@ -1,0 +1,16 @@
+.GroundTruthViewer {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    text-align: left;
+
+    &__title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: .5rem auto;
+        text-align: center;
+    }
+    &__passage {
+        margin-bottom: .75rem;
+    }
+}
