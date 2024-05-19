@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import lodash from 'lodash';
 
 const initState = {
     currentResponseIndex: -1,
@@ -26,10 +27,16 @@ const sliceTemplate = createSlice({
             state.start = state.responses.length === 0 ? true : false;
             state.end = state.currentResponseIndex === (state.responses.length - 1) ? true : false;
             return state;
+        },
+        responsesSetResponses: (state, action) => {
+            state.responses = lodash.cloneDeep(action.payload);
+            state.currentResponseIndex = 0;
+            state.start = state.responses.length === 0 ? true : false;
+            state.end = state.currentResponseIndex === (state.responses.length - 1) ? true : false;
         }
     }
 });
 
-export const { responsesReset, responsesNext, responsesPrev } = sliceTemplate.actions;
+export const { responsesReset, responsesNext, responsesPrev, responsesSetResponses } = sliceTemplate.actions;
 
 export default sliceTemplate.reducer;

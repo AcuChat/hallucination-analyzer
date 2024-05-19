@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import './Prompts.scss';
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
+import axios from 'axios';
 
 function Prompts() {
   const responses = useSelector(state => state.responses);
@@ -8,12 +9,18 @@ function Prompts() {
   const labels = useSelector(state => state.labels);
   
   const getResponses = async () => {
-    // const request = {
-    //   url: `https://ragtruth-processor.acur.ai/`,
-    //   method
-    // }
+    const request = {
+      url: `https://ragtruth-processor.acur.ai:5100/get-responses`,
+      method: 'post',
+      data: {
+        tasks: ['QA'],
+        models: [models.curModel],
+        labels: labels.labels.filter(label => label.selected).map(label => label.name) 
+      }
+    }
 
-      alert('get responses');
+    const response = await axios(request);
+    console.log(response.data);
   }
 
   useEffect(() => {
