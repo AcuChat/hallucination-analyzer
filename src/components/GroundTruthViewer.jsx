@@ -12,8 +12,8 @@ function GroundTruthViewer() {
     <div className='GroundTruthViewer'>
       <h1 className='GroundTruthViewer__title'>Ground Truth</h1>
       <div className="GroundTruthViewer__passages">
-        {groundTruth.passages.map(passage => {
-          const key = groundTruth.source + groundTruth.index;
+        {groundTruth.passages.map((passage, index) => {
+          const key = groundTruth.source + groundTruth.index + index;
           return (
             <div className="GroundTruthViewer__passage" key={key}>{passage}</div>
           )

@@ -1,7 +1,7 @@
  import { useDispatch, useSelector } from 'react-redux';
 import './RAGTruthViewer.scss';
-import React from 'react'
-import { groundTruthSet } from '../store/sliceGroundTruth';
+import React, { useEffect } from 'react'
+import { groundTruthSet, groundTruthSetErrors } from '../store/sliceGroundTruth';
 import lodash from 'lodash';
 
 function RAGTruthViewer() {
@@ -57,6 +57,11 @@ function RAGTruthViewer() {
       passages
     }))
   }
+
+  useEffect(() => {
+
+  dispatch(groundTruthSetErrors(errors.map(error => ({original: error.original, color: error.color}))))
+  })
 
   return (
     <div className='RAGTruthViewer'>

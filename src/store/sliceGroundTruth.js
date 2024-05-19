@@ -4,7 +4,8 @@ import lodash from 'lodash';
 const initState = {
     source: '',
     index: -1,
-    passages: []
+    passages: [],
+    errors: []
 }
 
 const sliceTemplate = createSlice({
@@ -23,10 +24,15 @@ const sliceTemplate = createSlice({
             state.index = index;
             state.passages = [...passages];
             return state;
+        },
+        groundTruthSetErrors: (state, action) => {
+            if (state.errors.length) return;
+            state.errors = lodash.cloneDeep(action.payload);
+            return state;
         }
     }
 });
 
-export const { groundTruthReset, groundTruthSet } = sliceTemplate.actions;
+export const { groundTruthReset, groundTruthSet, groundTruthSetErrors } = sliceTemplate.actions;
 
 export default sliceTemplate.reducer;
