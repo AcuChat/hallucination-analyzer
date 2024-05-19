@@ -1,7 +1,7 @@
 import './App.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import Header from './components/Header';
-import Acurai from './pages/Acurai';
+import RAGTruthCorpus from './pages/RAGTruthCorpus';
 
 function App() {
   const dispatch = useDispatch();
@@ -9,7 +9,7 @@ function App() {
   return (
     <div className='App'>
      <Header />
-     <Acurai />
+     <RAGTruthCorpus />
     </div>
   )
 }
