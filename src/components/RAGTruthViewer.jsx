@@ -5,6 +5,8 @@ import { groundTruthSet } from '../store/sliceGroundTruth';
 
 function RAGTruthViewer() {
   const responses = useSelector(state => state.responses);
+  const groundTruth = useSelector(state => state.groundTruth);
+
   const dispatch = useDispatch();
 
   if (responses.currentResponseIndex === -1 ) return (<></>)
@@ -30,7 +32,7 @@ function RAGTruthViewer() {
       <h2 className='RAGTruthViewer__title'>RAGTruth 2.0</h2>
       <div className="RAGTruthViewer__prompt">{curResponse.source.source_info.question}</div>
       <div className="RAGTruthViewer__response">{response}</div>
-      <div className="RAGTruthViewer__button" onClick={handleClick}>Ground Truth</div>
+      <div className={groundTruth.source === 'RAGTruth' ? "RAGTruthViewer__button RAGTruthViewer__button--active" : "RAGTruthViewer__button"} onClick={handleClick}>Ground Truth</div>
     </div>
   )
 }

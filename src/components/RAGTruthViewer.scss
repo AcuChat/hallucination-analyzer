@@ -22,6 +22,10 @@
         cursor: pointer;
         border-radius: 4px;
 
+        &--active {
+            color: white;
+            background-color: black;
+        }
         &:hover {
             color: white;
             background-color: black;
