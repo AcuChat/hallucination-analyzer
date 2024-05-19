@@ -1,3 +1,14 @@
 .Prompts {
-    
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    &__ragtruth, &__ragfix {
+        width: 49%;
+        padding: .5rem 1rem;
+        text-align: left;
+        // border: 1px solid black;
+        // border-radius: 8px;
+    }
 }

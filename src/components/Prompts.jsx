@@ -9,6 +9,8 @@ function Prompts() {
   const models = useSelector(state => state.models);
   const labels = useSelector(state => state.labels);
 
+  const curResponse = responses.currentResponseIndex > -1 ? responses.responses[responses.currentResponseIndex] : null;
+
   const dispatch = useDispatch();
   
   const getResponses = async () => {
@@ -32,7 +34,10 @@ function Prompts() {
   
   if (responses.currentResponseIndex === -1 ) return (<></>)
   return (
-    <div className='Prompts'>Prompts</div>
+    <div className='Prompts'>
+      <div className="Prompts__ragtruth">{curResponse ? curResponse.source.source_info.question : ''}</div>
+      <div className="Prompts__ragfix"></div>
+    </div>
   )
 }
 
