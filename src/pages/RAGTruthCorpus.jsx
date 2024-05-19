@@ -6,6 +6,7 @@ import LabelsSelector from '../components/LabelsSelector';
 import RAGTruthViewer from '../components/RAGTruthViewer';
 import RAGFixViewer from '../components/RAGFixViewer';
 import GroundTruthViewer from '../components/GroundTruthViewer';
+import Prompts from '../components/Prompts';
 
 function Acurai() {
   return (
@@ -15,7 +16,8 @@ function Acurai() {
       <AdminControls />
       <ModelSelector />
       <LabelsSelector />
-      <h2 className="Acurai__subtitle">Response ID: </h2>      
+      <h2 className="Acurai__subtitle">Response ID: </h2>
+      <Prompts />
       <div className="Acurai__responses-container">
         <RAGTruthViewer />
         <RAGFixViewer />
