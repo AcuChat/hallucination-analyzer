@@ -26,7 +26,7 @@ const sliceTemplate = createSlice({
             return state;
         },
         groundTruthSetErrors: (state, action) => {
-            if (state.errors.length) return;
+            if (lodash.isEqual(state.errors, action.payload)) return;
             state.errors = lodash.cloneDeep(action.payload);
             return state;
         }

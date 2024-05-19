@@ -1,5 +1,5 @@
 .AdminControls {
-    &__submit-button, &__reset-button {
+    &__submit-button, &__reset-button, &__verify-button {
         background-color: black;
         color: white;
         width: 6rem;
@@ -10,6 +10,11 @@
     &__submit-button {
         position: absolute;
         top: .5rem;
+        left: .5rem;
+    }
+    &__verify-button {
+        position: absolute;
+        top: 2.75rem;
         left: .5rem;
     }
     &__highlight-container {

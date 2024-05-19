@@ -15,6 +15,7 @@ function RAGTruthCorpus() {
   const responses = useSelector(state => state.responses);
   const models = useSelector(state => state.models);
   const labels = useSelector(state => state.labels);
+  const backend = useSelector(state => state.backend);
 
   const curResponse = responses.currentResponseIndex > -1 ? responses.responses[responses.currentResponseIndex] : null;
 
@@ -22,7 +23,7 @@ function RAGTruthCorpus() {
   
   const getResponses = async () => {
     const request = {
-      url: `https://ragtruth-processor.acur.ai:5100/get-responses`,
+      url: `${backend}/get-responses`,
       method: 'post',
       data: {
         tasks: ['QA'],

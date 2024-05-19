@@ -4,8 +4,9 @@
     width: 100%;
     max-width: 1200px;
     margin: auto;
-    min-height: 100vh;
+    height: calc(100vh - 3rem);
     background-color: white;
+    overflow-y: auto !important;
 
     &__response-id {
         margin: .5rem auto;

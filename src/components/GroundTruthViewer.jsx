@@ -14,8 +14,13 @@ function GroundTruthViewer() {
       <div className="GroundTruthViewer__passages">
         {groundTruth.passages.map((passage, index) => {
           const key = groundTruth.source + groundTruth.index + index;
+          console.log('groundTruth Errors', groundTruth.errors)
+          for (let i = 0; i < groundTruth.errors.length; ++i) {
+            console.log('original', groundTruth.errors[i].original)
+            passage = passage.replace(groundTruth.errors[i].original, `<span style="background-color: rgba(0, 105, 255, 0.3);">${groundTruth.errors[i].original}</span>`)
+          }
           return (
-            <div className="GroundTruthViewer__passage" key={key}>{passage}</div>
+            <div className="GroundTruthViewer__passage" key={key} dangerouslySetInnerHTML={{__html: passage}}></div>
           )
         })}
       </div>

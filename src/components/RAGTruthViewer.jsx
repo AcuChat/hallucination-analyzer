@@ -13,11 +13,17 @@ function RAGTruthViewer() {
 
   const dispatch = useDispatch();
 
+  let errors = [];
+  useEffect(() => {
+   dispatch(groundTruthSetErrors(errors))
+  })
+
+
   if (responses.currentResponseIndex === -1 ) return (<></>)
   
   const curResponse = responses.responses[responses.currentResponseIndex];
   let response = curResponse.response;
-  const errors = lodash.cloneDeep(curResponse.labels);
+  errors = lodash.cloneDeep(curResponse.labels);
 
   for (let i = 0; i < errors.length; ++i) {
     console.log('error', errors[i])
@@ -58,10 +64,10 @@ function RAGTruthViewer() {
     }))
   }
 
-  useEffect(() => {
+  const updateGroundTruth = (errors = []) => {
+    //dispatch(groundTruthSetErrors(errors))
+  }
 
-  dispatch(groundTruthSetErrors(errors.map(error => ({original: error.original, color: error.color}))))
-  })
 
   return (
     <div className='RAGTruthViewer'>
