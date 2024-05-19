@@ -19,7 +19,7 @@ function RAGTruthCorpus() {
       <AdminControls />
       <ModelSelector />
       <LabelsSelector />
-      <h2 className="RAGTruthCorpus__subtitle">Response ID: {responses.currentResponseIndex > -1 ? responses[responses.currentResponseIndex]?.id : ''} </h2>
+      <h2 className="RAGTruthCorpus__response-id">Response ID: {responses.currentResponseIndex > -1 ? responses.responses[responses.currentResponseIndex]?.id : ''} </h2>
       <Prompts />
       <div className="RAGTruthCorpus__responses-container">
         <RAGTruthViewer />
