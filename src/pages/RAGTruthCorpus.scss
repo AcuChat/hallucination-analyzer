@@ -10,4 +10,12 @@
     &__response-id {
         margin: .5rem auto;
     }
+    &__responses-container {
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        max-width: 1200px;
+        margin: auto;
+    }
+
 }

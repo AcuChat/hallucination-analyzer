@@ -1,0 +1,15 @@
+.RAGTruthViewer {
+    width: 49%;
+
+    &__title {
+        text-align: center;
+        font-weight: 700;
+        font-size: 1.25rem;
+    }
+    &__prompt {
+        font-weight: 700;
+    }
+    &__response {
+        text-align: left;
+    }
+}

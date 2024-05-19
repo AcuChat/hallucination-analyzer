@@ -1,5 +1,5 @@
 import './RAGTruthCorpus.scss';
-import React from 'react'
+import React, { useEffect } from 'react'
 import AdminControls from '../components/AdminControls';
 import ModelSelector from '../components/ModelSelector';
 import LabelsSelector from '../components/LabelsSelector';
@@ -7,10 +7,38 @@ import RAGTruthViewer from '../components/RAGTruthViewer';
 import RAGFixViewer from '../components/RAGFixViewer';
 import GroundTruthViewer from '../components/GroundTruthViewer';
 import Prompts from '../components/Prompts';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { responsesSetResponses } from '../store/sliceResponses';
+import axios from 'axios';
 
 function RAGTruthCorpus() {
   const responses = useSelector(state => state.responses);
+  const models = useSelector(state => state.models);
+  const labels = useSelector(state => state.labels);
+
+  const curResponse = responses.currentResponseIndex > -1 ? responses.responses[responses.currentResponseIndex] : null;
+
+  const dispatch = useDispatch();
+  
+  const getResponses = async () => {
+    const request = {
+      url: `https://ragtruth-processor.acur.ai:5100/get-responses`,
+      method: 'post',
+      data: {
+        tasks: ['QA'],
+        models: [models.curModel],
+        labels: labels.labels.filter(label => label.selected).map(label => label.name) 
+      }
+    }
+
+    const response = await axios(request);
+    dispatch(responsesSetResponses(response.data));
+  }
+
+  useEffect(() => {
+    getResponses();
+  }, [models, labels])
+  
 
   return (
     <div className='RAGTruthCorpus'>
@@ -20,7 +48,7 @@ function RAGTruthCorpus() {
       <ModelSelector />
       <LabelsSelector />
       <h2 className="RAGTruthCorpus__response-id">Response ID: {responses.currentResponseIndex > -1 ? responses.responses[responses.currentResponseIndex]?.id : ''} </h2>
-      <Prompts />
+      {/* <Prompts /> */}
       <div className="RAGTruthCorpus__responses-container">
         <RAGTruthViewer />
         <RAGFixViewer />
