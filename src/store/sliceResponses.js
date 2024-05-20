@@ -33,10 +33,19 @@ const sliceTemplate = createSlice({
             state.currentResponseIndex = 0;
             state.start = state.currentResponseIndex === 0 ? true : false;
             state.end = state.currentResponseIndex === (state.responses.length - 1) ? true : false;
+        },
+        responsesUpdateRagfixResponse: (state, action) => {
+            if (state.currentResponseIndex < 0) return;
+
+            const { responseId, ragfix} = action.payload;
+            const response = state.responses.find(r => r.id === responseId);
+            if (!response) return;
+            response.ragfix = ragfix;
+            return state;
         }
     }
 });
 
-export const { responsesReset, responsesNext, responsesPrev, responsesSetResponses } = sliceTemplate.actions;
+export const { responsesReset, responsesNext, responsesPrev, responsesSetResponses, responsesUpdateRagfixResponse } = sliceTemplate.actions;
 
 export default sliceTemplate.reducer;
