@@ -3,12 +3,15 @@ import './RAGFixViewer.scss';
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { responsesUpdateRagfixResponse } from '../store/sliceResponses';
+import { groundTruthReset, groundTruthSet } from '../store/sliceGroundTruth';
 
 function RAGFixViewer() {
   const [ activeButton, setActiveButton ] = useState('');
   const responses = useSelector(state => state.responses);
   const backend = useSelector(state => state.backend);
   const models = useSelector(state => state.models);
+  const groundTruth = useSelector(state => state.groundTruth);
+
   const dispatch = useDispatch();
 
   const getRagFixResponse = async responseId => {
@@ -25,6 +28,7 @@ function RAGFixViewer() {
         model: models.curModel
       }
     }
+    dispatch(groundTruthReset())
     const response = await axios(request);
 
     console.log('ragfix response', response.data);
@@ -47,14 +51,24 @@ function RAGFixViewer() {
       <h2 className='RAGFixViewer__title'>RAGFix</h2>
       {curResponse?.ragfix?.ragfixResponses?.length > 0 && <div className="RAGFixViewer__ragfix-results-container">
         {curResponse.ragfix.ragfixResponses.map(rr => {
+          const reconstituted = rr.reconstituted.replaceAll("\n", "<br />");
           return (
               <div key={rr.id}>
                 <div className="RAGFixViewer__query">{rr.query}</div>
-                <div className="RAGFixViewer__response">{rr.reconstituted}</div>
+                <div className="RAGFixViewer__response" dangerouslySetInnerHTML={{__html: reconstituted}}/>
                 <div 
-                  className={activeButton === rr.id ? "RAGFixViewer__button RAGFixViewer__button--active" : 'RAGFixViewer__button'}
+                  className={groundTruth.index === rr.id ? "RAGFixViewer__button RAGFixViewer__button--active" : 'RAGFixViewer__button'}
                   onClick={() => {
-                    if (activeButton === rr.id) return setActiveButton('');
+                    if (activeButton === rr.id && groundTruth.source === 'RAGFix') {
+                      dispatch(groundTruthReset())
+                      setActiveButton('');
+                      return;
+                    }
+                    dispatch(groundTruthSet({
+                      source: 'RAGFix',
+                      index: rr.id,
+                      passages: rr.texts 
+                    }))
                     setActiveButton(rr.id);
                   }}
                 >
