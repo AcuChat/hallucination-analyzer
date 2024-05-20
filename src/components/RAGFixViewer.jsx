@@ -6,15 +6,20 @@ import axios from 'axios';
 function RAGFixViewer() {
   const responses = useSelector(state => state.responses);
   const backend = useSelector(state => state.backend);
+  const models = useSelector(state => state.models);
 
   const getRagFixResponse = async responseId => {
+    const passages = responses.responses[responses.currentResponseIndex].source.source_info.passages.split("\n\n");
+    passages.pop();
+
     const request = {
       url: backend + '/get-ragfix-response',
       method: 'post',
       data: {
-        prompt: responses.responses[responses.currentResponseIndex].source.source_info.question,
-        passages: responses.responses[responses.currentResponseIndex].source.source_info.passages.split("\n\n"),
-        responseId
+        query: responses.responses[responses.currentResponseIndex].source.source_info.question,
+        passages,
+        responseId,
+        model: models.curModel
       }
     }
     const response = await axios(request);
