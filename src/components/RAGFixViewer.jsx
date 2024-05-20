@@ -1,12 +1,14 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './RAGFixViewer.scss';
 import React, { useEffect } from 'react'
 import axios from 'axios';
+import { responsesUpdateRagfixResponse } from '../store/sliceResponses';
 
 function RAGFixViewer() {
   const responses = useSelector(state => state.responses);
   const backend = useSelector(state => state.backend);
   const models = useSelector(state => state.models);
+  const dispatch = useDispatch();
 
   const getRagFixResponse = async responseId => {
     const passages = responses.responses[responses.currentResponseIndex].source.source_info.passages.split("\n\n");
@@ -25,6 +27,9 @@ function RAGFixViewer() {
     const response = await axios(request);
 
     console.log('ragfix response', response.data);
+
+    dispatch(responsesUpdateRagfixResponse({responseId, ragfix: response.data}));
+
   }
   useEffect(() => {
     if (responses.currentResponseIndex !== -1) {
