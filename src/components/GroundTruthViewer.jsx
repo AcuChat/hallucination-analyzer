@@ -13,6 +13,7 @@ function GroundTruthViewer() {
       <h1 className='GroundTruthViewer__title'>Ground Truth</h1>
       <div className="GroundTruthViewer__passages">
         {groundTruth.passages.map((passage, index) => {
+          if (groundTruth.source === 'RAGFix') passage = `Context ${index+1}: ` + passage;
           const key = groundTruth.source + groundTruth.index + index;
           console.log('groundTruth Errors', groundTruth.errors)
           for (let i = 0; i < groundTruth.errors.length; ++i) {

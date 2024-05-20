@@ -6,12 +6,25 @@
         font-weight: 700;
         font-size: 1.25rem;
     }
+    &__error {
+        color: white;
+        padding: .35rem .75rem;
+        background-color: red;
+        width: fit-content;
+        margin: auto;
+        border-radius: 8px;
+    }
     &__prompt {
         font-weight: 700;
+    }
+    &__response-container {
+        position: relative;
     }
     &__response {
         text-align: left;
     }
+    
+    
     &__button {
         color: black;
         background-color: white;
