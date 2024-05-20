@@ -51,9 +51,9 @@ function RAGTruthCorpus() {
       <ModelSelector />
       <LabelsSelector />
       <div className="RAGTruthCorpus__navigation-container">
-        <FaArrowAltCircleLeft size={24}/>
+        <FaArrowAltCircleLeft className={responses.start ? 'RAGTruthCorpus__nav-button RAGTruthCorpus__nav-button--hidden' : 'RAGTruthCorpus__nav-button'} size={24}/>
         <h2 className="RAGTruthCorpus__response-id">Response ID: {responses.currentResponseIndex > -1 ? responses.responses[responses.currentResponseIndex]?.id : ''} </h2>
-        <FaArrowAltCircleRight size={24}/>
+        <FaArrowAltCircleRight className={responses.end ? 'RAGTruthCorpus__nav-button RAGTruthCorpus__nav-button--hidden' : 'RAGTruthCorpus__nav-button'} size={24}/>
       </div>
       {/* <Prompts /> */}
       <div className="RAGTruthCorpus__responses-container">
