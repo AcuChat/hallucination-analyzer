@@ -1,12 +1,24 @@
 import { useSelector } from 'react-redux';
 import './GroundTruthViewer.scss';
 import React from 'react'
+import Error from './Error';
 
 function GroundTruthViewer() {
   const responses = useSelector(state => state.responses);
   const groundTruth = useSelector(state => state.groundTruth);
 
-  if (responses.currentResponseIndex === -1 || groundTruth.index === -1) return (<></>)
+  if (responses.currentResponseIndex === -1) return (<></>);
+
+  const curResponse = responses.responses[responses.currentResponseIndex];
+  console.log('curResponse', curResponse)
+  if (groundTruth.index === -1) return (
+    <div className='GroundTruthViewer'>
+      {curResponse?.labels.map((label, index) => {
+        console.log('label', label)
+        return <Error  key={curResponse.id + index} meta={label.meta} responseId={curResponse.id} index={index} />
+      })}
+    </div>    
+  )
   
   return (
     <div className='GroundTruthViewer'>
