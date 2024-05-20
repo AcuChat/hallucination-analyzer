@@ -44,8 +44,17 @@ function RAGFixViewer() {
   return (
     <div className='RAGFixViewer'>
       <h2 className='RAGFixViewer__title'>RAGFix</h2>
-      {
-
+      {curResponse?.ragfix?.ragfixResponses?.length > 0 && <div className="RAGFixViewer__ragfix-results-container">
+        {curResponse.ragfix.ragfixResponses.map(rr => {
+          return (
+              <div key={rr.id}>
+                <div className="RAGFixViewer__query">{rr.query}</div>
+                <div className="RAGFixViewer__response">{rr.reconstituted}</div>
+                <div className="RAGFixViewer__gt-button">Ground Truth</div>
+              </div>
+          )
+        })}
+       </div>
       }
     </div>
   )
