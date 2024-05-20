@@ -17,21 +17,21 @@ const sliceTemplate = createSlice({
             const test = state.currentResponseIndex + 1;
             if (test >= state.responses.length) return;
             state.currentResponseIndex = test;
-            state.start = state.responses.length === 0 ? true : false;
+            state.start = state.currentResponseIndex === 0 ? true : false;
             state.end = state.currentResponseIndex === (state.responses.length - 1) ? true : false;
             return state;
         },
         responsesPrev: (state, action) => {
             if (state.currentResponseIndex <= 0) return;
             state.currentResponseIndex = state.currentResponseIndex - 1;
-            state.start = state.responses.length === 0 ? true : false;
+            state.start = state.currentResponseIndex === 0 ? true : false;
             state.end = state.currentResponseIndex === (state.responses.length - 1) ? true : false;
             return state;
         },
         responsesSetResponses: (state, action) => {
             state.responses = lodash.cloneDeep(action.payload);
             state.currentResponseIndex = 0;
-            state.start = state.responses.length === 0 ? true : false;
+            state.start = state.currentResponseIndex === 0 ? true : false;
             state.end = state.currentResponseIndex === (state.responses.length - 1) ? true : false;
         }
     }
