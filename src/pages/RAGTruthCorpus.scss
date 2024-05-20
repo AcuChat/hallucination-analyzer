@@ -6,9 +6,10 @@
     margin: auto;
     height: calc(100vh - 3rem);
     background-color: white;
-    overflow-y: auto !important;
+    overflow-y: scroll !important;
 
     &__navigation-container {
+        margin: .5rem auto;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -25,6 +26,7 @@
         width: 10rem;
     }
     &__responses-container {
+    
         display: flex;
         justify-content: space-between;
         width: 90%;

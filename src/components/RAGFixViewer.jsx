@@ -36,13 +36,9 @@ function RAGFixViewer() {
   if (responses.currentResponseIndex === -1 ) return (<></>)
   const curResponse = responses.responses[responses.currentResponseIndex];
   
-
-
-  
-  
   return (
     <div className='RAGFixViewer'>
-      <h2 className='RAGFixViewer__title'>RAGTruth 2.0</h2>
+      <h2 className='RAGFixViewer__title'>RAGFix</h2>
       {
 
       }

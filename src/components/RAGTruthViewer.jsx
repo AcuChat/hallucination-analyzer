@@ -72,7 +72,7 @@ function RAGTruthViewer() {
 
   return (
     <div className='RAGTruthViewer'>
-      <h2 className='RAGTruthViewer__title'>RAGTruth 2.0</h2>
+      <h2 className='RAGTruthViewer__title'>RAGTruth</h2>
       <div className="RAGTruthViewer__prompt">{curResponse.source.source_info.question}</div>
       <div className="RAGTruthViewer__response" dangerouslySetInnerHTML={{__html: newResponse}}>
 
