@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './RAGFixViewer.scss';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { responsesUpdateRagfixResponse } from '../store/sliceResponses';
 
 function RAGFixViewer() {
+  const [ activeButton, setActiveButton ] = useState('');
   const responses = useSelector(state => state.responses);
   const backend = useSelector(state => state.backend);
   const models = useSelector(state => state.models);
@@ -50,7 +51,15 @@ function RAGFixViewer() {
               <div key={rr.id}>
                 <div className="RAGFixViewer__query">{rr.query}</div>
                 <div className="RAGFixViewer__response">{rr.reconstituted}</div>
-                <div className="RAGFixViewer__gt-button">Ground Truth</div>
+                <div 
+                  className={activeButton === rr.id ? "RAGFixViewer__button RAGFixViewer__button--active" : 'RAGFixViewer__button'}
+                  onClick={() => {
+                    if (activeButton === rr.id) return setActiveButton('');
+                    setActiveButton(rr.id);
+                  }}
+                >
+                  Ground Truth
+                </div>
               </div>
           )
         })}
