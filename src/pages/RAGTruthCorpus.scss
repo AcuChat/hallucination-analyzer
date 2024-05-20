@@ -14,9 +14,10 @@
         align-items: center;
     }
     &__nav-button {
-     
+        cursor: pointer;
         &--hidden {
             visibility: hidden;
+            cursor: none;
         }
     }
     &__response-id {

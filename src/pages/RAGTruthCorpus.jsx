@@ -8,7 +8,7 @@ import RAGFixViewer from '../components/RAGFixViewer';
 import GroundTruthViewer from '../components/GroundTruthViewer';
 import Prompts from '../components/Prompts';
 import { useDispatch, useSelector } from 'react-redux';
-import { responsesSetResponses } from '../store/sliceResponses';
+import { responsesNext, responsesPrev, responsesSetResponses } from '../store/sliceResponses';
 import axios from 'axios';
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { FaArrowAltCircleRight } from "react-icons/fa";
@@ -51,9 +51,17 @@ function RAGTruthCorpus() {
       <ModelSelector />
       <LabelsSelector />
       <div className="RAGTruthCorpus__navigation-container">
-        <FaArrowAltCircleLeft className={responses.start ? 'RAGTruthCorpus__nav-button RAGTruthCorpus__nav-button--hidden' : 'RAGTruthCorpus__nav-button'} size={24}/>
+        <FaArrowAltCircleLeft 
+          className={responses.start ? 'RAGTruthCorpus__nav-button RAGTruthCorpus__nav-button--hidden' : 'RAGTruthCorpus__nav-button'} 
+          size={24}
+          onClick={() => dispatch(responsesPrev())}
+        />
         <h2 className="RAGTruthCorpus__response-id">Response ID: {responses.currentResponseIndex > -1 ? responses.responses[responses.currentResponseIndex]?.id : ''} </h2>
-        <FaArrowAltCircleRight className={responses.end ? 'RAGTruthCorpus__nav-button RAGTruthCorpus__nav-button--hidden' : 'RAGTruthCorpus__nav-button'} size={24}/>
+        <FaArrowAltCircleRight 
+          className={responses.end ? 'RAGTruthCorpus__nav-button RAGTruthCorpus__nav-button--hidden' : 'RAGTruthCorpus__nav-button'} 
+          onClick={() => dispatch(responsesNext())}
+          size={24}
+        />
       </div>
       {/* <Prompts /> */}
       <div className="RAGTruthCorpus__responses-container">
