@@ -10,6 +10,8 @@ import Prompts from '../components/Prompts';
 import { useDispatch, useSelector } from 'react-redux';
 import { responsesSetResponses } from '../store/sliceResponses';
 import axios from 'axios';
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaArrowAltCircleRight } from "react-icons/fa";
 
 function RAGTruthCorpus() {
   const responses = useSelector(state => state.responses);
@@ -48,7 +50,11 @@ function RAGTruthCorpus() {
       <AdminControls />
       <ModelSelector />
       <LabelsSelector />
-      <h2 className="RAGTruthCorpus__response-id">Response ID: {responses.currentResponseIndex > -1 ? responses.responses[responses.currentResponseIndex]?.id : ''} </h2>
+      <div className="RAGTruthCorpus__navigation-container">
+        <FaArrowAltCircleLeft size={24}/>
+        <h2 className="RAGTruthCorpus__response-id">Response ID: {responses.currentResponseIndex > -1 ? responses.responses[responses.currentResponseIndex]?.id : ''} </h2>
+        <FaArrowAltCircleRight size={24}/>
+      </div>
       {/* <Prompts /> */}
       <div className="RAGTruthCorpus__responses-container">
         <RAGTruthViewer />

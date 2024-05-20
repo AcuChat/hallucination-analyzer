@@ -8,8 +8,14 @@
     background-color: white;
     overflow-y: auto !important;
 
+    &__navigation-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     &__response-id {
-        margin: .5rem auto;
+
+        width: 10rem;
     }
     &__responses-container {
         display: flex;
@@ -18,5 +24,6 @@
         max-width: 1200px;
         margin: auto;
     }
+
 
 }

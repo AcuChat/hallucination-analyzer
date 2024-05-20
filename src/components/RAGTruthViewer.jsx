@@ -1,8 +1,9 @@
- import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './RAGTruthViewer.scss';
 import React, { useEffect } from 'react'
 import { groundTruthSet, groundTruthSetErrors } from '../store/sliceGroundTruth';
 import lodash from 'lodash';
+
 
 function RAGTruthViewer() {
   const responses = useSelector(state => state.responses);
