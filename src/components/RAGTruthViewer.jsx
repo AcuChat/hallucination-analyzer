@@ -73,10 +73,10 @@ function RAGTruthViewer() {
   return (
     <div className='RAGTruthViewer'>
      
-      <div className="RAGTruthViewer__error">Error</div>
+      {/* <div className="RAGTruthViewer__error">Error</div> */}
       <h2 className='RAGTruthViewer__title'>RAGTruth</h2>
       <div className="RAGTruthViewer__prompt">{curResponse.source.source_info.question}</div>
-      <div className="RAGTruthViewer__response" dangerouslySetInnerHTML={{__html: newResponse}}>
+      <div className="RAGTruthViewer__response" dangerouslySetInnerHTML={{__html: newResponse.replaceAll("\n", "<br />")}}>
 
 
       </div>

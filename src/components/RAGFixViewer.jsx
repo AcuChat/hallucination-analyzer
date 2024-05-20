@@ -48,11 +48,11 @@ function RAGFixViewer() {
   
   return (
     <div className='RAGFixViewer'>
-      <div className="RAGFixViewer__correct">Correct</div>
+      {/* <div className="RAGFixViewer__correct">Correct</div> */}
       <h2 className='RAGFixViewer__title'>RAGFix</h2>
       {curResponse?.ragfix?.ragfixResponses?.length > 0 && <div className="RAGFixViewer__ragfix-results-container">
         {curResponse.ragfix.ragfixResponses.map(rr => {
-          const reconstituted = rr.reconstituted;
+          const reconstituted = rr.reconstituted.replaceAll("\n", "<br />");
           return (
               <div key={rr.id}>
                 <div className="RAGFixViewer__query">{rr.query}</div>

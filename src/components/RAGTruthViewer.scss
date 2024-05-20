@@ -1,6 +1,9 @@
 .RAGTruthViewer {
     width: 49%;
-
+    border: 3px solid red;
+    border-radius: 8px;
+    padding: .5rem 1rem;
+    
     &__title {
         text-align: center;
         font-weight: 700;
