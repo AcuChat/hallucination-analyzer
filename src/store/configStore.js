@@ -5,6 +5,7 @@ import labelsReducer from './sliceLabels';
 import responsesReducer from './sliceResponses';
 import groundTruthReducer from './sliceGroundTruth';
 import backendReducer from './sliceBackend';
+import spinnerReducer from './sliceSpinner';
 
 export const store = configureStore({ 
     reducer: {
@@ -12,7 +13,8 @@ export const store = configureStore({
       labels: labelsReducer,
       responses: responsesReducer,
       groundTruth: groundTruthReducer,
-      backend: backendReducer
+      backend: backendReducer,
+      spinner: spinnerReducer
     }
 });
 
