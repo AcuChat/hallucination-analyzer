@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { responsesUpdateRagfixResponse } from '../store/sliceResponses';
 import { groundTruthReset, groundTruthSet } from '../store/sliceGroundTruth';
+import SyncLoader from 'react-spinners/SyncLoader';
 
 function RAGFixViewer() {
   const [ activeButton, setActiveButton ] = useState('');
@@ -11,6 +12,7 @@ function RAGFixViewer() {
   const backend = useSelector(state => state.backend);
   const models = useSelector(state => state.models);
   const groundTruth = useSelector(state => state.groundTruth);
+  const spinner = useSelector(state => state.spinner);
 
   const dispatch = useDispatch();
 
@@ -50,7 +52,8 @@ function RAGFixViewer() {
     <div className='RAGFixViewer'>
       {/* <div className="RAGFixViewer__correct">Correct</div> */}
       <h2 className='RAGFixViewer__title'>RAGFix</h2>
-      {curResponse?.ragfix?.ragfixResponses?.length > 0 && <div className="RAGFixViewer__ragfix-results-container">
+      {spinner && <SyncLoader className='RAGFixViewer__spinner' />}
+      {!spinner && curResponse?.ragfix?.ragfixResponses?.length > 0 && <div className="RAGFixViewer__ragfix-results-container">
         {curResponse.ragfix.ragfixResponses.map(rr => {
           const reconstituted = rr.reconstituted.replaceAll("\n", "<br />");
           return (

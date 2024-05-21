@@ -13,6 +13,6 @@ const sliceSpinner = createSlice({
     }
 });
 
-export const { sliceSpinner } = sliceSpinner.actions;
+export const { spinnerSet } = sliceSpinner.actions;
 
 export default sliceSpinner.reducer;

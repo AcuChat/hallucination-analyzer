@@ -4,6 +4,7 @@ import React from 'react'
 import axios from 'axios';
 import { groundTruthReset } from '../store/sliceGroundTruth';
 import { responsesUpdateRagfixResponse } from '../store/sliceResponses';
+import { spinnerSet } from '../store/sliceSpinner';
 
 function AdminControls() {
   const responses = useSelector(state => state.responses);
@@ -18,7 +19,7 @@ function AdminControls() {
     passages.pop();
 
     const request = {
-      url: backend + '/get-ragfix-response',
+      url: backend + '/update-ragfix-response',
       method: 'post',
       data: {
         query: responses.responses[responses.currentResponseIndex].source.source_info.question,
@@ -40,7 +41,13 @@ function AdminControls() {
   if (responses.currentResponseIndex < 0) return <></>
 
   const handleSubmit = async (responseId) => {
-    alert(`Submit ${responseId}`)
+    dispatch(spinnerSet(true));
+    try {
+      await getRagFixResponse(responseId);
+    } catch (err) {
+      console.error(err);
+    }
+    dispatch(spinnerSet(false))
   }
 
   return (

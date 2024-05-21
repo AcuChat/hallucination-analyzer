@@ -4,6 +4,9 @@
     border-radius: 8px;
     padding: .5rem 1rem;
     
+    &__spinner {
+        margin-top: 1.5rem;
+    }
     &__correct {
         color: white;
         padding: .35rem .75rem;
