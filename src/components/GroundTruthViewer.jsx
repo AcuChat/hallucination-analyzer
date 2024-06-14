@@ -26,10 +26,11 @@ function GroundTruthViewer() {
   console.log('curResponse', curResponse)
   if (groundTruth.index === -1) return (
     <div className='GroundTruthViewer'>
+        <div className={groundTruth.source === 'RAGTruth' ? "RAGTruthViewer__button RAGTruthViewer__button--active" : "RAGTruthViewer__button"} onClick={handleClick}>Ground Truth</div>
       {curResponse?.labels.map((label, index) => {
         console.log('label', label)
         return <>
-        <div className={groundTruth.source === 'RAGTruth' ? "RAGTruthViewer__button RAGTruthViewer__button--active" : "RAGTruthViewer__button"} onClick={handleClick}>Ground Truth</div>
+      
         <Error  key={curResponse.id + index} meta={label.meta} responseId={curResponse.id} index={index} />
         </>
       })}
