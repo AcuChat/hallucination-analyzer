@@ -57,13 +57,6 @@ function RAGTruthViewer() {
 
   console.log('passages', passages )
 
-  const handleClick = () => {
-    dispatch(groundTruthSet({
-      source: 'RAGTruth',
-      index: 0,
-      passages
-    }))
-  }
 
   const updateGroundTruth = (errors = []) => {
     //dispatch(groundTruthSetErrors(errors))
@@ -80,7 +73,7 @@ function RAGTruthViewer() {
 
 
       </div>
-      <div className={groundTruth.source === 'RAGTruth' ? "RAGTruthViewer__button RAGTruthViewer__button--active" : "RAGTruthViewer__button"} onClick={handleClick}>Ground Truth</div>
+      
     </div>
   )
 }

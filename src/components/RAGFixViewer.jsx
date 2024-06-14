@@ -60,24 +60,7 @@ function RAGFixViewer() {
               <div key={rr.id}>
                 <div className="RAGFixViewer__query">{rr.query}</div>
                 <div className="RAGFixViewer__response" dangerouslySetInnerHTML={{__html: reconstituted}}/>
-                <div 
-                  className={groundTruth.index === rr.id ? "RAGFixViewer__button RAGFixViewer__button--active" : 'RAGFixViewer__button'}
-                  onClick={() => {
-                    if (activeButton === rr.id && groundTruth.source === 'RAGFix') {
-                      dispatch(groundTruthReset())
-                      setActiveButton('');
-                      return;
-                    }
-                    dispatch(groundTruthSet({
-                      source: 'RAGFix',
-                      index: rr.id,
-                      passages: rr.texts 
-                    }))
-                    setActiveButton(rr.id);
-                  }}
-                >
-                  Ground Truth
-                </div>
+               
               </div>
           )
         })}
