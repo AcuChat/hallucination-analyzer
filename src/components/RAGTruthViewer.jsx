@@ -46,9 +46,10 @@ function RAGTruthViewer() {
   
   let newResponse = response.substring(0, errors[0].start);
   errors.forEach((error, index) => {
+    console.log('ERROR', error)
     newResponse += `<span style="background-color: ${error.color}">${response.substring(error.start, error.end)}</span>`;
     if (index === errors.length - 1) newResponse += response.substring(error.end);
-    else newResponse += response.substring(error.end, error[index+1].start);
+    else newResponse += error[index+1]?.start ? response.substring(error.end, error[index+1].start) : response.substring(error.end);
   })
 
 
