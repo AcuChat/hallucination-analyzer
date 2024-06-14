@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initState = `https://ragtruth-processor.acur.ai:5100`
+const initState = `https://ragtruth-processor.ragfix.ai`
 
 const sliceTemplate = createSlice({
     name: 'backend',
