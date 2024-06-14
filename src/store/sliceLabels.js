@@ -28,6 +28,11 @@ const labels = [
     }
 ]
 
+if (window.location.hostname !== 'localhost') {
+    labels.pop();
+    labels.pop();
+}
+
 const initState = {
     labels
 }
