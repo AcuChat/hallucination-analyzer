@@ -29,6 +29,11 @@ function RAGTruthViewer() {
   for (let i = 0; i < errors.length; ++i) {
     console.log('error', errors[i])
     const meta = errors[i].meta.split("\n");
+    console.log('meta', meta.length, meta)
+    if (meta.length < 3) {
+      errors.slice(0, i - 1);
+      break;
+    }
     errors[i].type = meta[0].toLowerCase();
     errors[i].original = meta[1].substring(10);
     errors[i].generated = meta[2].substring(11);
