@@ -68,8 +68,8 @@ function RAGTruthCorpus() {
       </div>
       {/* <Prompts /> */}
       <div className="RAGTruthCorpus__responses-container">
-        {/* <RAGTruthViewer /> */}
-        {/* <RAGFixViewer /> */}
+        <RAGTruthViewer />
+        <RAGFixViewer />
       </div>
       {/* <GroundTruthViewer /> */}
     </div>
