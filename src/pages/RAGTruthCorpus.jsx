@@ -71,7 +71,7 @@ function RAGTruthCorpus() {
         <RAGTruthViewer />
         <RAGFixViewer />
       </div>
-      {/* <GroundTruthViewer /> */}
+      <GroundTruthViewer />
     </div>
   )
 }

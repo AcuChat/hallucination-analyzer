@@ -13,4 +13,15 @@
     &__passage {
         margin-bottom: .75rem;
     }
+    &__button {
+        display: block;
+        margin: 1rem auto;
+        width: fit-content;
+        padding: .5rem .75rem;
+        background-color: black;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+
+    }
 }
