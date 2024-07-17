@@ -15,6 +15,7 @@ function GroundTruthViewer() {
   const curResponse = responses.responses[responses.currentResponseIndex];
   const passages = curResponse.passages;
   const handleClick = () => {
+    console.log('handleClick', groundTruth.source)
     dispatch(groundTruthSet({
       source: groundTruth.source === '' ? 'Passages' : '',
     }))
@@ -23,7 +24,7 @@ function GroundTruthViewer() {
   console.log('ground truth source', groundTruth);
   return(
     <div className='GroundTruthViewer'>
-      <div className="GroundTruthViewer__button">{groundTruth.source === '' ? 'Errors' : 'Passages'}</div>
+      <div className="GroundTruthViewer__button" onClick={handleClick}>{groundTruth.source === '' ? 'Errors' : 'Passages'}</div>
       {groundTruth.source === '' && <Error meta={curResponse.meta}/>}
     </div>
   );

@@ -14,15 +14,9 @@ const sliceTemplate = createSlice({
     reducers: {
         groundTruthReset: (state, action) => initState,
         groundTruthSet: (state, action) => {
-            const { source, index, passages } = action.payload;
-
-            if (state.source === source && state.index === index && lodash.isEqual(state.passages, passages)) {
-                return initState;
-            }
+            const {source} = action.payload;
 
             state.source = source;
-            state.index = index;
-            state.passages = [...passages];
             return state;
         },
         groundTruthSetErrors: (state, action) => {
