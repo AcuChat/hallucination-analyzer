@@ -13,7 +13,7 @@ function GroundTruthViewer() {
   if (responses.currentResponseIndex === -1) return (<></>);
 
   const curResponse = responses.responses[responses.currentResponseIndex];
-  const passages = curResponse.passages;
+  const passages = JSON.parse(curResponse.passages);
   const handleClick = () => {
     console.log('handleClick', groundTruth.source)
     dispatch(groundTruthSet({
@@ -21,11 +21,20 @@ function GroundTruthViewer() {
     }))
   }
 
-  console.log('ground truth source', groundTruth);
+  console.log('ground truth source', curResponse);
   return(
     <div className='GroundTruthViewer'>
       <div className="GroundTruthViewer__button" onClick={handleClick}>{groundTruth.source === '' ? 'Errors' : 'Passages'}</div>
       {groundTruth.source === '' && <Error meta={curResponse.meta}/>}
+      {groundTruth.source !== '' && <div className='GroundTruthViewer__passages'>
+          {passages.map((p, index) => {
+            return (
+              <div key={"id" + curResponse.id + "_" + index} className='GroundTruthViewer__passage'>
+                {p.replaceAll("\n", "<br />")}
+              </div>
+            )
+          })}
+        </div>}
     </div>
   );
 
