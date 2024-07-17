@@ -5,9 +5,11 @@ import axios from 'axios';
 import { responsesUpdateRagfixResponse } from '../store/sliceResponses';
 import { groundTruthReset, groundTruthSet } from '../store/sliceGroundTruth';
 import SyncLoader from 'react-spinners/SyncLoader';
+import { v4 as uuidv4 } from 'uuid';
 
 function RAGFixViewer() {
   const [ activeButton, setActiveButton ] = useState('');
+  
   const responses = useSelector(state => state.responses);
   const backend = useSelector(state => state.backend);
   const models = useSelector(state => state.models);
@@ -33,8 +35,6 @@ function RAGFixViewer() {
     dispatch(groundTruthReset())
     const response = await axios(request);
 
-    console.log('ragfix response', response.data);
-
     dispatch(responsesUpdateRagfixResponse({responseId, ragfix: response.data}));
 
   }
@@ -57,7 +57,7 @@ function RAGFixViewer() {
         {curResponse.ragfix.ragfixResponses.map(rr => {
           const reconstituted = rr.reconstituted.replaceAll("\n", "<br />");
           return (
-              <div key={rr.id}>
+              <div key={rr.id + '_' + uuidv4()}>
                 <div className="RAGFixViewer__query">{rr.query}</div>
                 <div className="RAGFixViewer__response" dangerouslySetInnerHTML={{__html: reconstituted}}/>
                

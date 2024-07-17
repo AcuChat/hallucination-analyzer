@@ -31,8 +31,6 @@ function AdminControls() {
     dispatch(groundTruthReset())
     const response = await axios(request);
 
-    console.log('ragfix response', response.data);
-
     dispatch(responsesUpdateRagfixResponse({responseId, ragfix: response.data}));
 
   }

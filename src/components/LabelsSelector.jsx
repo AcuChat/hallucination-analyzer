@@ -5,7 +5,6 @@ import Label from './Label';
 
 function LabelsSelector() {
   const labels = useSelector(state => state.labels.labels);
-  console.log('labels', labels)
   return (
     <div className='LabelsSelector'>
       {labels?.map(label => {

@@ -8,7 +8,6 @@ import { modelsSetModel } from '../store/sliceModels';
 
 function ModelSelector() {
   const models = useSelector(state => state.models);
-  console.log('models', models)
   const dispatch = useDispatch();
   return (
     <div className='ModelSelector'>

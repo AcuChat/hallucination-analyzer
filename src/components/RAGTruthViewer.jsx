@@ -27,9 +27,7 @@ function RAGTruthViewer() {
   errors = lodash.cloneDeep(curResponse.labels);
 
   for (let i = 0; i < errors.length; ++i) {
-    console.log('error', errors[i])
     const meta = errors[i].meta.split("\n");
-    console.log('meta', meta.length, meta)
     if (meta.length < 3) {
       errors.slice(0, i - 1);
       break;
@@ -47,11 +45,9 @@ function RAGTruthViewer() {
     return a.start - b.start;
   })
 
-  console.log('sorted errors', errors);
   
   let newResponse = response.substring(0, errors[0].start);
   errors.forEach((error, index) => {
-    console.log('ERROR', error)
     newResponse += `<span style="background-color: ${error.color}">${response.substring(error.start, error.end)}</span>`;
     if (index === errors.length - 1) newResponse += response.substring(error.end);
     else newResponse += error[index+1]?.start ? response.substring(error.end, error[index+1].start) : response.substring(error.end);
@@ -60,9 +56,6 @@ function RAGTruthViewer() {
 
   const passages = curResponse.source.source_info.passages.split("\n\n");
   passages.pop();
-
-  console.log('passages', passages )
-
 
   const updateGroundTruth = (errors = []) => {
     //dispatch(groundTruthSetErrors(errors))

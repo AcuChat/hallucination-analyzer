@@ -1,9 +1,9 @@
 import './Error.scss';
-import React from 'react'
+import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 function Error({meta, responseId, index}) {
     const lines = meta.split("\n");
-    console.log('lines', lines)
     const title = lines[0];
     lines.shift();
   return (
@@ -12,12 +12,11 @@ function Error({meta, responseId, index}) {
         <div className="Error__table">
             {lines.map(line => {
                 const loc = line.indexOf(":");
-                console.log('getting heading');
+                console.log("Error.jsx 01 IN")
                 const heading = line.substring(0, loc);
-                console.log('getting value')
                 const value = line.substring(loc + 1);
-                console.log(heading, value)
-                return (<div className='Error__row' key={responseId + index}>
+                console.log("Error.jsx 01 OUT")
+                return (<div className='Error__row' key={responseId + index + uuidv4()}>
                     <div className="Error__heading">{heading}</div>
                     <div className="Error__value">{value}</div>
                 </div>)

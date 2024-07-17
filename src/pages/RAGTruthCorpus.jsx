@@ -25,12 +25,15 @@ function RAGTruthCorpus() {
   
   const getResponses = async () => {
     const request = {
-      url: `${backend}/get-responses`,
+      url: `${backend}/get-acurai-responses`,
       method: 'post',
       data: {
-        tasks: ['QA'],
-        models: [models.curModel],
-        labels: labels.labels.filter(label => label.selected).map(label => label.name) 
+        dataset: 'RAGTruth',
+        model: 'gpt-4-0613',
+        types: [
+          'evidentConflict',
+          'subtleConflict'
+        ]
       }
     }
 
@@ -47,10 +50,10 @@ function RAGTruthCorpus() {
     <div className='RAGTruthCorpus'>
       <h1 className="RAGTruthCorpus__title">RAGTruth Corpus</h1>
       <div className="RAGTruthCorpus__corpus-info">Source: <a href='https://arxiv.org/html/2401.00396v1' target="_blank">RAGTruth Study</a></div>
-      <AdminControls />
-      <ModelSelector />
-      <LabelsSelector />
-      <div className="RAGTruthCorpus__navigation-container">
+      {/* <AdminControls /> */}
+      {/* <ModelSelector /> */}
+      {/* <LabelsSelector /> */}
+      {/* <div className="RAGTruthCorpus__navigation-container">
         <FaArrowAltCircleLeft 
           className={responses.start ? 'RAGTruthCorpus__nav-button RAGTruthCorpus__nav-button--hidden' : 'RAGTruthCorpus__nav-button'} 
           size={24}
@@ -62,13 +65,13 @@ function RAGTruthCorpus() {
           onClick={() => dispatch(responsesNext())}
           size={24}
         />
-      </div>
+      </div> */}
       {/* <Prompts /> */}
       <div className="RAGTruthCorpus__responses-container">
-        <RAGTruthViewer />
-        <RAGFixViewer />
+        {/* <RAGTruthViewer /> */}
+        {/* <RAGFixViewer /> */}
       </div>
-      <GroundTruthViewer />
+      {/* <GroundTruthViewer /> */}
     </div>
   )
 }
