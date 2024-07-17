@@ -24,6 +24,7 @@ function GroundTruthViewer() {
   return(
     <div className='GroundTruthViewer'>
       <div className="GroundTruthViewer__button">{groundTruth.source === '' ? 'Errors' : 'Passages'}</div>
+      {groundTruth.source === '' && <Error meta={curResponse.meta}/>}
     </div>
   );
 
