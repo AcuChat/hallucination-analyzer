@@ -53,7 +53,7 @@ function RAGTruthCorpus() {
       <AdminControls />
       <ModelSelector />
       {/* <LabelsSelector /> */}
-      {/* <div className="RAGTruthCorpus__navigation-container">
+      <div className="RAGTruthCorpus__navigation-container">
         <FaArrowAltCircleLeft 
           className={responses.start ? 'RAGTruthCorpus__nav-button RAGTruthCorpus__nav-button--hidden' : 'RAGTruthCorpus__nav-button'} 
           size={24}
@@ -65,7 +65,7 @@ function RAGTruthCorpus() {
           onClick={() => dispatch(responsesNext())}
           size={24}
         />
-      </div> */}
+      </div>
       {/* <Prompts /> */}
       <div className="RAGTruthCorpus__responses-container">
         {/* <RAGTruthViewer /> */}
