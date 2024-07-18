@@ -15,23 +15,44 @@ function AdminControls() {
   const dispatch = useDispatch();
 
   const getRagFixResponse = async responseId => {
-    const passages = responses.responses[responses.currentResponseIndex].source.source_info.passages.split("\n\n");
-    passages.pop();
+    const cur = responses.responses[responses.currentResponseIndex];
+
+    const passages = cur.passages;
+    const query = cur.query;
 
     const request = {
-      url: backend + '/update-ragfix-response',
+      url: backend + '/get-ragfix-response',
       method: 'post',
       data: {
-        query: responses.responses[responses.currentResponseIndex].source.source_info.question,
+        query,
         passages,
-        responseId,
-        model: models.curModel
+        model: cur.model,
+        temperature: cur.temperature
       }
     }
-    dispatch(groundTruthReset())
+    
     const response = await axios(request);
 
-    dispatch(responsesUpdateRagfixResponse({responseId, ragfix: response.data}));
+    console.log('response', response.data);
+    dispatch(responsesUpdateRagfixResponse({responseId: cur.id, acurai_response: response.data}));
+
+    // const passages = responses.responses[responses.currentResponseIndex].source.source_info.passages.split("\n\n");
+    // passages.pop();
+
+    // const request = {
+    //   url: backend + '/update-ragfix-response',
+    //   method: 'post',
+    //   data: {
+    //     query: responses.responses[responses.currentResponseIndex].source.source_info.question,
+    //     passages,
+    //     responseId,
+    //     model: models.curModel
+    //   }
+    // }
+    // dispatch(groundTruthReset())
+    // const response = await axios(request);
+
+    // dispatch(responsesUpdateRagfixResponse({responseId, ragfix: response.data}));
 
   }
 
