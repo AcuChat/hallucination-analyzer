@@ -17,32 +17,30 @@ function RAGFixViewer() {
 
   const dispatch = useDispatch();
 
-  const getRagFixResponse = async responseId => {
-    const passages = responses.responses[responses.currentResponseIndex].source.source_info.passages.split("\n\n");
-    passages.pop();
+  const getRagFixResponse = async cur => {
+    const passages = cur.passages;
+    const query = cur.query;
 
     const request = {
       url: backend + '/get-ragfix-response',
       method: 'post',
       data: {
-        query: responses.responses[responses.currentResponseIndex].source.source_info.question,
+        query,
         passages,
-        responseId,
-        model: models.curModel
+        model: cur.model,
+        temperature: cur.temperature
       }
     }
     
     const response = await axios(request);
 
-    dispatch(responsesUpdateRagfixResponse({responseId, ragfix: response.data}));
+    console.log('response', response.data);
+    //dispatch(responsesUpdateRagfixResponse({responseId, ragfix: response.data}));
 
   }
   useEffect(() => {
-    // if (responses.currentResponseIndex !== -1) {
-    //   const test = responses.responses[responses.currentResponseIndex]?.ragfix;
-    //   if (test) return;
-    //   getRagFixResponse(responses.responses[responses.currentResponseIndex].id)
-    // }
+    const cur = responses.responses[responses.currentResponseIndex];
+    if (!cur.acurai_response) getRagFixResponse(cur);
   })
   if (responses.currentResponseIndex === -1 ) return (<></>)
   const curResponse = responses.responses[responses.currentResponseIndex];
