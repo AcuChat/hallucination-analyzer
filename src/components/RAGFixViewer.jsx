@@ -32,6 +32,8 @@ function RAGFixViewer() {
         id: cur.id
       }
     }
+
+    console.log(request);
     
     const response = await axios(request);
 
@@ -41,7 +43,8 @@ function RAGFixViewer() {
   }
   useEffect(() => {
     const cur = responses.responses[responses.currentResponseIndex];
-    if (!cur.acurai_response) getRagFixResponse(cur);
+    console.log('useEffect cur', cur);
+    if (!cur?.acurai_response) getRagFixResponse(cur);
   })
   if (responses.currentResponseIndex === -1 ) return (<></>)
   const curResponse = responses.responses[responses.currentResponseIndex];
