@@ -37,10 +37,10 @@ const sliceTemplate = createSlice({
         responsesUpdateRagfixResponse: (state, action) => {
             if (state.currentResponseIndex < 0) return;
 
-            const { responseId, ragfix} = action.payload;
+            const { responseId, acurai_response} = action.payload;
             const response = state.responses.find(r => r.id === responseId);
             if (!response) return;
-            response.ragfix = ragfix;
+            response.acurai_response = acurai_response;
             return state;
         }
     }

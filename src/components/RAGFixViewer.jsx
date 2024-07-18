@@ -35,7 +35,7 @@ function RAGFixViewer() {
     const response = await axios(request);
 
     console.log('response', response.data);
-    //dispatch(responsesUpdateRagfixResponse({responseId, ragfix: response.data}));
+    dispatch(responsesUpdateRagfixResponse({responseId: cur.id, acurai_response: response.data}));
 
   }
   useEffect(() => {
