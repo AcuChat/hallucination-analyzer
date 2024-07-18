@@ -17,9 +17,28 @@ function RAGFixViewer() {
 
   const dispatch = useDispatch();
 
+  function checkType(obj) {
+    if (Array.isArray(obj)) {
+      return 'array';
+    } else if (typeof obj === 'string') {
+      return 'string';
+    } else {
+      return 'other';
+    }
+  }
+
   const getRagFixResponse = async cur => {
-    const passages = cur.passages;
+    let passages = cur.passages;
     const query = cur.query;
+
+    let passagesType = checkType(passages);
+    if (passagesType === 'string') {
+      passages = JSON.parse(passages);
+      passagesType = checkType(passages);
+    }
+    if (passagesType !== 'array') return false;
+
+    passages = passages.filter(p => p.length ? true : false);
 
     const request = {
       url: backend + '/get-ragfix-response',
@@ -34,11 +53,11 @@ function RAGFixViewer() {
     }
 
     console.log(request);
-    
+
     const response = await axios(request);
 
-    console.log('response', response.data);
-    dispatch(responsesUpdateRagfixResponse({responseId: cur.id, acurai_response: response.data}));
+    console.log('response', response.data.content);
+    dispatch(responsesUpdateRagfixResponse({responseId: cur.id, acurai_response: response.data.content}));
 
   }
   useEffect(() => {
