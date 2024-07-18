@@ -28,7 +28,8 @@ function RAGFixViewer() {
         query,
         passages,
         model: cur.model,
-        temperature: cur.temperature
+        temperature: cur.temperature,
+        id: cur.id
       }
     }
     
