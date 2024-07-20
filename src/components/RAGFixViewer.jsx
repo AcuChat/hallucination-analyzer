@@ -73,8 +73,8 @@ function RAGFixViewer() {
       {/* <div className="RAGFixViewer__correct">Correct</div> */}
       <h2 className='RAGFixViewer__title'>RAGFix</h2>
       {spinner && <SyncLoader className='RAGFixViewer__spinner' />}
-      {!spinner && <div className="RAGFixViewer__ragfix-results-container">
-        {curResponse.acurai_response}
+      {!spinner && <div className="RAGFixViewer__ragfix-results-container" dangerouslySetInnerHTML={{__html: curResponse.acurai_response.replaceAll("\n", "<br />")}}>
+    
        </div>
       }
     </div>

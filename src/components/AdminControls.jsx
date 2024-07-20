@@ -14,10 +14,30 @@ function AdminControls() {
 
   const dispatch = useDispatch();
 
+  function checkType(obj) {
+    if (Array.isArray(obj)) {
+      return 'array';
+    } else if (typeof obj === 'string') {
+      return 'string';
+    } else {
+      return 'other';
+    }
+  }
   const getRagFixResponse = async responseId => {
+   
     const cur = responses.responses[responses.currentResponseIndex];
+    
+    let passages = cur.passages;
+    let passagesType = checkType(passages);
+    
+    if (passagesType === 'string') {
+      passages = JSON.parse(passages);
+      passagesType = checkType(passages);
+    }
+    if (passagesType !== 'array') return false;
 
-    const passages = cur.passages;
+    passages = passages.filter(p => p.length ? true : false);
+
     const query = cur.query;
 
     const request = {
@@ -27,14 +47,16 @@ function AdminControls() {
         query,
         passages,
         model: cur.model,
-        temperature: cur.temperature
+        temperature: cur.temperature,
+        id: responseId,
+        skip: true
       }
     }
     
     const response = await axios(request);
 
     console.log('response', response.data);
-    dispatch(responsesUpdateRagfixResponse({responseId: cur.id, acurai_response: response.data}));
+    dispatch(responsesUpdateRagfixResponse({responseId: cur.id, acurai_response: response.data.content}));
 
     // const passages = responses.responses[responses.currentResponseIndex].source.source_info.passages.split("\n\n");
     // passages.pop();
