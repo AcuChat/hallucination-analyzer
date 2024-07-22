@@ -66,6 +66,7 @@ function RAGTruthCorpus() {
           size={24}
         />
       </div>
+      <p className="RAGTruthCorpus__prompt">{curResponse.query}</p>
       {/* <Prompts /> */}
       <div className="RAGTruthCorpus__responses-container">
         <RAGTruthViewer />
