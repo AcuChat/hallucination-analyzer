@@ -24,7 +24,7 @@ function GroundTruthViewer() {
   console.log('ground truth source', curResponse);
   return(
     <div className='GroundTruthViewer'>
-      <div className="GroundTruthViewer__button" onClick={handleClick}>{groundTruth.source === '' ? 'Errors' : 'Passages'}</div>
+      <div className="GroundTruthViewer__button" onClick={handleClick}>{groundTruth.source === '' ? 'Passages' : 'Errors'}</div>
       {groundTruth.source === '' && <Error meta={curResponse.meta}/>}
       {groundTruth.source !== '' && <div className='GroundTruthViewer__passages'>
           {passages.map((p, index) => {
