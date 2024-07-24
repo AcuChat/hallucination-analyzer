@@ -55,7 +55,7 @@ function RAGFixViewer() {
         query,
         passages,
         model: models.curModel,
-        temperature: cur.temperature,
+        temperature: Number(cur.temperature),
         id: cur.id
       }
     }

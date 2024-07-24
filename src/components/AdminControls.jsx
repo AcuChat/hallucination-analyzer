@@ -47,7 +47,7 @@ function AdminControls() {
         query,
         passages,
         model: cur.model,
-        temperature: cur.temperature,
+        temperature: Number(cur.temperature),
         id: responseId,
         skip: true
       }
