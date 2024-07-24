@@ -15,6 +15,9 @@ function RAGFixViewer() {
   const models = useSelector(state => state.models);
   const spinner = useSelector(state => state.spinner);
 
+  console.log('RAGFixViewer models', models)
+  console.log('responses', responses)
+
   const dispatch = useDispatch();
 
   function checkType(obj) {
@@ -28,8 +31,13 @@ function RAGFixViewer() {
   }
 
   const getRagFixResponse = async cur => {
-    let passages = cur.passages;
-    const query = cur.query;
+    let passages = cur?.passages;
+    const query = cur?.query;
+
+    if (!passages || !query) {
+      console.error('getRagfixResponse Error', cur);
+      return;
+    }
 
     let passagesType = checkType(passages);
     if (passagesType === 'string') {
@@ -46,7 +54,7 @@ function RAGFixViewer() {
       data: {
         query,
         passages,
-        model: cur.model,
+        model: models.curModel,
         temperature: cur.temperature,
         id: cur.id
       }

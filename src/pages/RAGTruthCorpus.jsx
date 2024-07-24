@@ -29,7 +29,7 @@ function RAGTruthCorpus() {
       method: 'post',
       data: {
         dataset: 'RAGTruth',
-        model: 'gpt-4-0613',
+        model: models.curModel,
         types: [
           'evidentConflict',
           'subtleConflict'
