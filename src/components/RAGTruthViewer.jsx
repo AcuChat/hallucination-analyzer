@@ -27,7 +27,7 @@ function RAGTruthViewer() {
     <div className='RAGTruthViewer'>
      
       {/* <div className="RAGTruthViewer__error">Error</div> */}
-      <h2 className='RAGTruthViewer__title'>{capitalizeFirstLetter(models.curModel)}</h2>
+      <h2 className='RAGTruthViewer__title'>{models.curModel.replace("gpt", "GPT").replace("turbo", "Turbo")}</h2>
       {/* <div className="RAGTruthViewer__prompt">{curResponse.query}</div> */}
       <div className="RAGTruthViewer__response" dangerouslySetInnerHTML={{__html: curResponse.response.replaceAll("\n", "<br />")}}>
       </div>
